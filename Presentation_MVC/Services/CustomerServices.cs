@@ -56,5 +56,20 @@ namespace Presentation_MVC.Services
                 _context.SaveChanges();
             }
         }
+
+        public bool deleteCustomer(string id)
+        {
+            var customer = _context.Customer_Settings.SingleOrDefault(c=>c.AttributeID.Equals(id)); 
+            if (customer != null)
+            {
+                _context.Remove(customer);
+                _context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

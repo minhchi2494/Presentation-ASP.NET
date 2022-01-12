@@ -1,0 +1,47 @@
+﻿@model Presentation_MVC.Models.Customer_Setting
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Customer Setting Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AttributeName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AttributeName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsDistributorAttribute)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsDistributorAttribute)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsCustomerAttribute)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsCustomerAttribute)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Used)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Used)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.AttributeID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

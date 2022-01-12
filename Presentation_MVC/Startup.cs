@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Presentation_MVC.Repository;
 using Microsoft.EntityFrameworkCore;
+using Presentation_MVC.Services;
 
 namespace Presentation_MVC
 {
@@ -26,6 +27,7 @@ namespace Presentation_MVC
         {
             string url = "server=LAPTOP-6D8AK342\\CHI;database=Digitech;uid=sa;pwd=123";
             services.AddDbContext<CustomerContext>(options => options.UseSqlServer(url));
+            services.AddScoped<ICustomerServices, CustomerServices>();
             services.AddControllersWithViews();
         }
 
@@ -50,7 +52,7 @@ namespace Presentation_MVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=CustomerSetting}/{action=Index}/{id?}");
             });
         }
     }

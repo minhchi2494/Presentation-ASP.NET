@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Presentation_MVC.Models.Customer_Setting>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Customer Setting</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i> Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AttributeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDistributorAttribute)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCustomerAttribute)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Used)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AttributeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDistributorAttribute)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsCustomerAttribute)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Used)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AttributeID" class="btn btn-warning"><i class="fas fa-edit"></i></a> 
+                <a asp-action="Details" asp-route-id="@item.AttributeID" class="btn btn-primary"><i class="far fa-eye"></i></a> 
+                <a asp-action="Delete" asp-route-id="@item.AttributeID" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

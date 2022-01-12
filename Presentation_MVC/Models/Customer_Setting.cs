@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Presentation_MVC.Models
 {
+    [Table("Customer_Setting")]
     public class Customer_Setting
     {
         [Key]

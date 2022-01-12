@@ -12,5 +12,6 @@ namespace Presentation_MVC.Services
         Customer_Setting getCustomer(string id);
         void addCustomer(Customer_Setting newCustomer);
         void editCustomer(Customer_Setting editCustomer);
+        bool deleteCustomer(string id);
     }
 }
