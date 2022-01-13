@@ -32,5 +32,7 @@ namespace Presentation_MVC.Models
         public bool IsCustomerAttribute { get; set; }
 
         public bool Used { get; set; }
+
+        //add new comment
     }
 }
