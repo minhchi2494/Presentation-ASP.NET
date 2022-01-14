@@ -34,5 +34,7 @@ namespace Presentation_MVC.Models
         public bool Used { get; set; }
 
         //add new comment
+        //add new comment 2
+
     }
 }
