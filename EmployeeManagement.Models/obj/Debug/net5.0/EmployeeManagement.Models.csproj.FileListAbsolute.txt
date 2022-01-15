@@ -1,0 +1,15 @@
+E:\Workspase\ASP.NET\TutorialsWebAPI\EmployeeManagement.Models\bin\Debug\net5.0\EmployeeManagement.Models.deps.json
+E:\Workspase\ASP.NET\TutorialsWebAPI\EmployeeManagement.Models\bin\Debug\net5.0\EmployeeManagement.Models.dll
+E:\Workspase\ASP.NET\TutorialsWebAPI\EmployeeManagement.Models\bin\Debug\net5.0\ref\EmployeeManagement.Models.dll
+E:\Workspase\ASP.NET\TutorialsWebAPI\EmployeeManagement.Models\bin\Debug\net5.0\EmployeeManagement.Models.pdb
+E:\Workspase\ASP.NET\TutorialsWebAPI\EmployeeManagement.Models\obj\Debug\net5.0\EmployeeManagement.Models.csproj.AssemblyReference.cache
+E:\Workspase\ASP.NET\TutorialsWebAPI\EmployeeManagement.Models\obj\Debug\net5.0\EmployeeManagement.Models.GeneratedMSBuildEditorConfig.editorconfig
+E:\Workspase\ASP.NET\TutorialsWebAPI\EmployeeManagement.Models\obj\Debug\net5.0\EmployeeManagement.Models.AssemblyInfoInputs.cache
+E:\Workspase\ASP.NET\TutorialsWebAPI\EmployeeManagement.Models\obj\Debug\net5.0\EmployeeManagement.Models.AssemblyInfo.cs
+E:\Workspase\ASP.NET\TutorialsWebAPI\EmployeeManagement.Models\obj\Debug\net5.0\EmployeeManagement.Models.csproj.CoreCompileInputs.cache
+E:\Workspase\ASP.NET\TutorialsWebAPI\EmployeeManagement.Models\obj\Debug\net5.0\scopedcss\bundle\EmployeeManagement.Models.styles.css
+E:\Workspase\ASP.NET\TutorialsWebAPI\EmployeeManagement.Models\obj\Debug\net5.0\staticwebassets\EmployeeManagement.Models.StaticWebAssets.Manifest.cache
+E:\Workspase\ASP.NET\TutorialsWebAPI\EmployeeManagement.Models\obj\Debug\net5.0\EmployeeManagement.Models.RazorTargetAssemblyInfo.cache
+E:\Workspase\ASP.NET\TutorialsWebAPI\EmployeeManagement.Models\obj\Debug\net5.0\EmployeeManagement.Models.dll
+E:\Workspase\ASP.NET\TutorialsWebAPI\EmployeeManagement.Models\obj\Debug\net5.0\ref\EmployeeManagement.Models.dll
+E:\Workspase\ASP.NET\TutorialsWebAPI\EmployeeManagement.Models\obj\Debug\net5.0\EmployeeManagement.Models.pdb
