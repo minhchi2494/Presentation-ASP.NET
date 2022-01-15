@@ -1,0 +1,15 @@
+{
+  "info": {
+    "title": "DemoSecurity",
+    "x-type": "odata",
+    "x-connector": "mssql",
+    "x-connector-version": 15
+  },
+  "definitions": {},
+  "paths": {},
+  "basePath": "/odata/DemoSecurity",
+  "host": "localhost:5000",
+  "schemes": [
+    "http"
+  ]
+}

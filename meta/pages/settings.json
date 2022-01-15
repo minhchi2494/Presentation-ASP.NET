@@ -1,0 +1,166 @@
+{
+  "access": [
+    "Authenticated"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Settings",
+          "type": "heading"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "path": "add-setting",
+                        "then": [
+                          {
+                            "code": "await grid0.Reload();",
+                            "type": "execute"
+                          },
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ],
+                        "type": "popup"
+                      }
+                    ]
+                  },
+                  "icon": "save",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "text": "Save",
+                  "type": "button"
+                },
+                {
+                  "allowFiltering": false,
+                  "allowPaging": true,
+                  "allowSorting": false,
+                  "columns": [
+                    {
+                      "frozen": false,
+                      "property": "AttributeID",
+                      "title": "Attribute_ID"
+                    },
+                    {
+                      "frozen": false,
+                      "property": "AttributeName",
+                      "title": "Attribute Name"
+                    },
+                    {
+                      "property": "Description",
+                      "title": "Description"
+                    },
+                    {
+                      "property": "IsDistributorAttribute",
+                      "template": [
+                        {
+                          "name": "checkbox2",
+                          "type": "checkbox",
+                          "value": "${data.IsCustomerAttribute}",
+                          "valueType": "bool"
+                        }
+                      ],
+                      "title": "Is Distributor Attribute"
+                    },
+                    {
+                      "property": "IsCustomerAttribute",
+                      "template": [
+                        {
+                          "disabled": false,
+                          "name": "checkbox1",
+                          "type": "checkbox",
+                          "value": "${data.IsCustomerAttribute}",
+                          "valueType": "bool"
+                        }
+                      ],
+                      "title": "Is Customer Attribute"
+                    },
+                    {
+                      "editTemplate": "",
+                      "format": "",
+                      "property": "Used",
+                      "template": [
+                        {
+                          "name": "checkbox0",
+                          "type": "checkbox",
+                          "value": "${data.Used}",
+                          "valueType": "bool"
+                        }
+                      ],
+                      "title": "Used",
+                      "type": "boolean",
+                      "width": "50px"
+                    }
+                  ],
+                  "count": "",
+                  "data": "${getSettingsResult}",
+                  "events": {
+                    "loadData": [],
+                    "rowDoubleClick": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "AttributeID",
+                            "value": "${event.Data.AttributeID}"
+                          }
+                        ],
+                        "path": "edit-setting",
+                        "then": [
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ],
+                        "type": "popup"
+                      }
+                    ]
+                  },
+                  "filterMode": "advanced",
+                  "itemType": "Dm1.Models.Dm.Setting",
+                  "name": "grid0",
+                  "title": "",
+                  "type": "datagrid"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "DM.getSettings",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getSettingsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<Dm1.Models.Dm.Setting>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Settings"
+}

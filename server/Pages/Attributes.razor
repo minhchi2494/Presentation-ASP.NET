@@ -1,0 +1,65 @@
+﻿@page "/"
+@page "/attributes"
+@layout MainLayout
+@inherits Dm1.Pages.AttributesComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Dm1.Models.Dm
+@using Microsoft.AspNetCore.Identity;
+@using Dm1.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Attributes">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-6">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+      </div>
+      <div class="col-md-6 justify-content-end d-flex">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; margin-left: 5px; margin-right: 5px" Text="Export" Click="@Button1Click">
+        </RadzenButton>
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; margin-left: 5px; margin-right: 5px" Text="Import" Click="@Button2Click">
+        </RadzenButton>
+      </div>
+      <div class="col-md-12">
+        <RadzenDataGrid @ref="grid0" AllowColumnResize="true" AllowFiltering="false" AllowPaging="true" AllowSorting="false" Data="@getAttributesResult" FilterMode="Radzen.FilterMode.Advanced" TItem="Dm1.Models.Dm.Attribute" Responsive="true" style="width: auto" RowDoubleClick="@Grid0RowDoubleClick">
+          <Columns>
+            <RadzenDataGridColumn TItem="Dm1.Models.Dm.Attribute" FilterProperty="Setting.AttributeName" GroupProperty="Setting.AttributeName" Property="Setting.Description" SortProperty="Setting.AttributeName" Title="Attribute Master">
+              <Template Context="data">
+              @(data.Setting?.AttributeName)
+              </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Dm1.Models.Dm.Attribute" Property="Code" Title="Code">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Dm1.Models.Dm.Attribute" Property="Description" Title="Description">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Dm1.Models.Dm.Attribute" Property="ShortName" Title="Short Name">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Dm1.Models.Dm.Attribute" Property="Parent" Title="Parent">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Dm1.Models.Dm.Attribute" FormatString="{0:dd/MM/yyyy}" Property="EffectiveDate" Title="Effective Date">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Dm1.Models.Dm.Attribute" FormatString="{0:dd/MM/yyyy}" Property="ValidUntil" Title="Valid Until">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Dm1.Models.Dm.Attribute" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="125px">
+              <Template Context="dm1ModelsDmAttribute">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="visibility" Size="ButtonSize.Small" style="background-color: #479cc8; margin-left: 5px; margin-right: 5px" Click="@((args) =>GridDeleteButtonClick(args, dm1ModelsDmAttribute))" @onclick:stopPropagation="true">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="create" Size="ButtonSize.Small" style="background-color: #479cc8; margin-left: 5px; margin-right: 5px" @onclick:stopPropagation="true">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" style="background-color: #479cc8; margin-left: 5px; margin-right: 5px" Click="@((args) =>Button3Click(args, dm1ModelsDmAttribute))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

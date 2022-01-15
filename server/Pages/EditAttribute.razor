@@ -1,0 +1,113 @@
+﻿@page "/edit-attribute/{Code}"
+@layout MainLayout
+@inherits Dm1.Pages.EditAttributeComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Dm1.Models.Dm
+@using Microsoft.AspNetCore.Identity;
+@using Dm1.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@(_attribute)" TItem="Dm1.Models.Dm.Attribute" Visible="@(_attribute != null)" Submit="@Form0Submit" >
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Code" style="width: 100%" Text="Code">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="2" ReadOnly="true" style="display: block; width: 100%" @bind-Value="@(_attribute.Code)" Name="Code">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="Code" style="position: absolute" Text="Code is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Description" style="width: 100%" Text="Description">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="80" style="display: block; width: 100%" @bind-Value="@(_attribute.Description)" Name="Description">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="Description" style="position: absolute" Text="Description is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="ShortName" style="width: 100%" Text="Short Name">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="40" style="display: block; width: 100%" @bind-Value="@(_attribute.ShortName)" Name="ShortName">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="ShortName" style="position: absolute" Text="ShortName is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Parent" style="width: 100%" Text="Parent">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDown Data="@getAttributesResult" TextProperty="Description" @bind-Value="@(_attribute.Parent)" ValueProperty="Code" Name="Dropdown0">
+                </RadzenDropDown>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="EffectiveDate" style="width: 100%" Text="Effective Date">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker DateFormat="dd/MM/yyyy" style="display: block; width: 100%" @bind-Value="@(_attribute.EffectiveDate)" Name="EffectiveDate">
+                </RadzenDatePicker>
+                <RadzenRequiredValidator Component="EffectiveDate" style="position: absolute" Text="EffectiveDate is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="ValidUntil" style="width: 100%" Text="Valid Until">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker DateFormat="dd/MM/yyyy" style="width: 100%" @bind-Value="@(_attribute.ValidUntil)" Name="ValidUntil">
+                </RadzenDatePicker>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="SettingId" style="width: 100%" Text="Attribute Master">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDown Data="@getSettingsResult" Placeholder="Choose Setting" style="display: block; width: 100%" TextProperty="Description" @bind-Value="@(_attribute.SettingId)" ValueProperty="AttributeID" Name="SettingId">
+                </RadzenDropDown>
+                <RadzenRequiredValidator Component="SettingId" style="position: absolute" Text="SettingId is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

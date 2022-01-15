@@ -1,0 +1,480 @@
+{
+  "access": [
+    "Authenticated"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "attributes": [
+                    {}
+                  ],
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Code",
+                              "name": "CodeLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Code",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 2,
+                              "name": "Code",
+                              "readOnly": true,
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${_attribute.Code}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "Code",
+                              "name": "CodeRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Code is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Description",
+                              "name": "DescriptionLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Description",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 80,
+                              "name": "Description",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${_attribute.Description}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "Description",
+                              "name": "DescriptionRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Description is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ShortName",
+                              "name": "ShortNameLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Short Name",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 40,
+                              "name": "ShortName",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${_attribute.ShortName}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "ShortName",
+                              "name": "ShortNameRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "ShortName is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Parent",
+                              "name": "ParentLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Parent",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getAttributesResult}",
+                              "name": "dropdown0",
+                              "textProperty": "Description",
+                              "type": "dropdown",
+                              "value": "${_attribute.Parent}",
+                              "valueProperty": "Code",
+                              "valueType": "string"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "EffectiveDate",
+                              "name": "EffectiveDateLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Effective Date",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "dateFormat": "dd/MM/yyyy",
+                              "name": "EffectiveDate",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "datepicker",
+                              "value": "${_attribute.EffectiveDate}",
+                              "valueType": "DateTime"
+                            },
+                            {
+                              "component": "EffectiveDate",
+                              "name": "EffectiveDateRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "EffectiveDate is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ValidUntil",
+                              "name": "ValidUntilLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Valid Until",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "dateFormat": "dd/MM/yyyy",
+                              "name": "ValidUntil",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "datepicker",
+                              "value": "${_attribute.ValidUntil}",
+                              "valueType": "DateTime?",
+                              "visible": true
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "SettingId",
+                              "name": "SettingIdLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Attribute Master",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getSettingsResult}",
+                              "name": "SettingId",
+                              "placeholder": "Choose Setting",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "textProperty": "Description",
+                              "type": "dropdown",
+                              "value": "${_attribute.SettingId}",
+                              "valueProperty": "AttributeID",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "SettingId",
+                              "name": "SettingIdRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "SettingId is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${_attribute}",
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update Attribute",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DM.updateAttribute",
+                        "parameters": [
+                          {
+                            "name": "Code",
+                            "value": "${parameters.Code}"
+                          },
+                          {
+                            "name": "Attribute",
+                            "value": "${_attribute}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "condition": "",
+                            "result": "${_attribute}",
+                            "type": "close-popup"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "itemType": "Dm1.Models.Dm.Attribute",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${_attribute != null}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "DM.getAttributes",
+        "then": [
+          {
+            "global": false,
+            "name": "getAttributesResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<Dm1.Models.Dm.Attribute>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "error": [],
+        "name": "DM.getAttributeByCode",
+        "parameters": [
+          {
+            "name": "Code",
+            "value": "${parameters.Code}"
+          }
+        ],
+        "then": [
+          {
+            "name": "_attribute",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "Dm1.Models.Dm.Attribute"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "DM.getSettings",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getSettingsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<Dm1.Models.Dm.Setting>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Edit Attribute"
+}

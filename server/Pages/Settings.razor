@@ -1,0 +1,53 @@
+﻿@page "/settings"
+@layout MainLayout
+@inherits Dm1.Pages.SettingsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Dm1.Models.Dm
+@using Microsoft.AspNetCore.Identity;
+@using Dm1.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Settings">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="save" style="margin-bottom: 10px" Text="Save" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="false" AllowPaging="true" AllowSorting="false" Data="@getSettingsResult" FilterMode="Radzen.FilterMode.Advanced" TItem="Dm1.Models.Dm.Setting" RowDoubleClick="@Grid0RowDoubleClick">
+          <Columns>
+            <RadzenDataGridColumn TItem="Dm1.Models.Dm.Setting" Frozen="false" Property="AttributeID" Title="Attribute_ID">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Dm1.Models.Dm.Setting" Frozen="false" Property="AttributeName" Title="Attribute Name">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Dm1.Models.Dm.Setting" Property="Description" Title="Description">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Dm1.Models.Dm.Setting" Property="IsDistributorAttribute" Title="Is Distributor Attribute">
+              <Template Context="dm1ModelsDmSetting">
+                <RadzenCheckBox @bind-Value="@(dm1ModelsDmSetting.IsCustomerAttribute)" Name="Checkbox2">
+                </RadzenCheckBox>
+              </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Dm1.Models.Dm.Setting" Property="IsCustomerAttribute" Title="Is Customer Attribute">
+              <Template Context="dm1ModelsDmSetting">
+                <RadzenCheckBox Disabled="false" @bind-Value="@(dm1ModelsDmSetting.IsCustomerAttribute)" Name="Checkbox1">
+                </RadzenCheckBox>
+              </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Dm1.Models.Dm.Setting" Property="Used" Title="Used" Width="50px">
+              <Template Context="dm1ModelsDmSetting">
+                <RadzenCheckBox @bind-Value="@(dm1ModelsDmSetting.Used)" Name="Checkbox0">
+                </RadzenCheckBox>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

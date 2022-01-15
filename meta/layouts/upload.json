@@ -1,0 +1,16 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "name": "upload0",
+          "type": "upload",
+          "url": ""
+        }
+      ],
+      "name": "body0",
+      "type": "body"
+    }
+  ],
+  "name": "Upload"
+}

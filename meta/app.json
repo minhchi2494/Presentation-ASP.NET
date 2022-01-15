@@ -1,0 +1,58 @@
+{
+  "dataSources": [
+    "DM",
+    "DemoSecurity"
+  ],
+  "generator": "@radzen/blazor-server",
+  "https": false,
+  "layouts": [
+    "Login",
+    "Main",
+    "Upload"
+  ],
+  "logo": "",
+  "name": "DM1",
+  "navigation": [
+    "Attributes",
+    "Settings"
+  ],
+  "pages": [
+    "Attributes",
+    "Add Attribute",
+    "Edit Attribute",
+    "Settings",
+    "Add Setting",
+    "Edit Setting",
+    "Application Roles",
+    "Application Users",
+    "Add Application Role",
+    "Add Application User",
+    "Register Application User",
+    "Profile",
+    "Edit Application User",
+    "Unauthorized",
+    "Login"
+  ],
+  "security": {
+    "autoGeneratePages": true,
+    "dataSource": "DemoSecurity",
+    "duration": 5,
+    "emailConfirmation": false,
+    "layout": "Main",
+    "loginLayout": "Login",
+    "loginPage": "Login",
+    "overwriteExistingPages": true,
+    "provider": "default",
+    "sessionRefresh": false,
+    "smtpFrom": "",
+    "smtpPassword": "",
+    "smtpSSL": false,
+    "smtpServer": "",
+    "smtpUser": ""
+  },
+  "serverLang": "cs",
+  "serverProject": true,
+  "serverVersion": "6",
+  "startPage": "Attributes",
+  "theme": "standard"
+}

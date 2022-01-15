@@ -1,0 +1,467 @@
+{
+  "info": {
+    "title": "DM",
+    "x-type": "odata",
+    "x-connector": "mssql",
+    "x-connector-version": 15
+  },
+  "definitions": {
+    "Attribute": {
+      "x-table": "dbo.Attribute",
+      "resource": "Attributes",
+      "required": [
+        "Code",
+        "Description",
+        "ShortName",
+        "EffectiveDate",
+        "SettingId"
+      ],
+      "properties": {
+        "Code": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 2
+        },
+        "Description": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 80
+        },
+        "ShortName": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 40
+        },
+        "Parent": {
+          "type": "string",
+          "length": 2
+        },
+        "EffectiveDate": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time",
+          "x-datetime": "datetime"
+        },
+        "ValidUntil": {
+          "type": "string",
+          "format": "date-time",
+          "x-datetime": "datetime"
+        },
+        "Setting": {
+          "type": "object",
+          "$ref": "#/definitions/Setting"
+        },
+        "SettingId": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 5,
+          "x-foreignKey": {
+            "parentTable": "Setting",
+            "parentEntityType": "Setting",
+            "type": "Setting",
+            "principalKey": "AttributeID",
+            "name": "Setting",
+            "textProperty": "AttributeName",
+            "navigationProperty": "Attributes"
+          }
+        }
+      }
+    },
+    "Setting": {
+      "x-table": "dbo.Setting",
+      "resource": "Settings",
+      "required": [
+        "AttributeID",
+        "AttributeName",
+        "Description"
+      ],
+      "properties": {
+        "AttributeID": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 5,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Setting",
+              "name": "Attributes",
+              "type": "Attribute"
+            }
+          ]
+        },
+        "AttributeName": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 30
+        },
+        "Description": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 40
+        },
+        "IsDistributorAttribute": {
+          "x-nullable": false,
+          "type": "boolean"
+        },
+        "IsCustomerAttribute": {
+          "x-nullable": false,
+          "type": "boolean"
+        },
+        "Used": {
+          "x-nullable": false,
+          "type": "boolean"
+        },
+        "Attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Attribute"
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/Attributes": {
+      "get": {
+        "operationId": "getAttributes",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Attribute"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAttribute",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Attribute",
+            "schema": {
+              "$ref": "#/definitions/Attribute"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Attribute"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Settings": {
+      "get": {
+        "operationId": "getSettings",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Setting"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createSetting",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Setting",
+            "schema": {
+              "$ref": "#/definitions/Setting"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Setting"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Attributes('{Code}')": {
+      "delete": {
+        "operationId": "deleteAttribute",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Code",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAttributeByCode",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Code",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Attribute"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAttribute",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Code",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Attribute",
+            "schema": {
+              "$ref": "#/definitions/Attribute"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelAttributeChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Attribute",
+            "schema": {
+              "$ref": "#/definitions/Attribute"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Settings('{AttributeID}')": {
+      "delete": {
+        "operationId": "deleteSetting",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "AttributeID",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getSettingByAttributeID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "AttributeID",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Setting"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateSetting",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "AttributeID",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Setting",
+            "schema": {
+              "$ref": "#/definitions/Setting"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelSettingChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Setting",
+            "schema": {
+              "$ref": "#/definitions/Setting"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "basePath": "/odata/DM",
+  "host": "localhost:5000",
+  "schemes": [
+    "http"
+  ]
+}

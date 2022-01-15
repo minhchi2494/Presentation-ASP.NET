@@ -1,0 +1,360 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "AttributeID",
+                              "name": "AttributeIDLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Attribute Id",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 5,
+                              "name": "AttributeID",
+                              "readOnly": true,
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${setting.AttributeID}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "AttributeID",
+                              "name": "AttributeIDRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "AttributeID is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "AttributeName",
+                              "name": "AttributeNameLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Attribute Name",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 30,
+                              "name": "AttributeName",
+                              "readOnly": true,
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${setting.AttributeName}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "AttributeName",
+                              "name": "AttributeNameRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "AttributeName is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Description",
+                              "name": "DescriptionLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Description",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 40,
+                              "name": "Description",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${setting.Description}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "Description",
+                              "name": "DescriptionRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Description is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "IsDistributorAttribute",
+                              "name": "IsDistributorAttributeLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Is Distributor Attribute",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "IsDistributorAttribute",
+                              "type": "checkbox",
+                              "value": "${setting.IsDistributorAttribute}",
+                              "valueType": "bool"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "IsCustomerAttribute",
+                              "name": "IsCustomerAttributeLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Is Customer Attribute",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "IsCustomerAttribute",
+                              "type": "checkbox",
+                              "value": "${setting.IsCustomerAttribute}",
+                              "valueType": "bool"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Used",
+                              "name": "UsedLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Used",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Used",
+                              "type": "checkbox",
+                              "value": "${setting.Used}",
+                              "valueType": "bool"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${setting}",
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new Setting!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DM.createSetting",
+                        "parameters": [
+                          {
+                            "name": "Setting",
+                            "value": "${setting}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "result": "${setting}",
+                            "type": "close-popup"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "itemType": "Dm1.Models.Dm.Setting",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${setting != null}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "setting",
+        "type": "set",
+        "value": "new Dm1.Models.Dm.Setting(){}",
+        "valueType": "Dm1.Models.Dm.Setting"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Add Setting",
+  "access": [
+    "Authenticated"
+  ]
+}
