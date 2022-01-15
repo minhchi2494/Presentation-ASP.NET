@@ -1,0 +1,196 @@
+﻿@page "/CustomerAttribute"
+
+@using CustomerManagementBlazor.Services
+@using CustomerManagementModel
+@using System.Data;
+@using NPOI.XSSF.UserModel;
+@using System.IO;
+@using NPOI.SS.UserModel;
+
+ <h3>Customer Attribute</h3>
+
+@if(attributes == null)
+{
+    <CustomerManagementBlazor.Components.Loading></CustomerManagementBlazor.Components.Loading>
+}
+else
+{
+    <div class="row">
+        <EditForm Model="@SearchAttributes" OnSubmit=@SearchForm>
+            <div class="row">
+                <div class="col" style="display:inline-flex">
+                    <InputText style="width:300px" class="form-control" @bind-Value="SearchAttributes.AttributeMaster" placeholder="Search"></InputText> 
+                    <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </button>
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </div>   
+                </div>
+        </EditForm>
+    </div>
+    <div class="row mt-2" >
+        <div style="display:flex;justify-content:space-between;">
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+                <span class="glyphicon glyphicon-plus"></span> Add
+            </button>
+            <button class="btn btn-info">
+                <InputFile OnChange="@ImportExcelFile"/>Import
+            </button>
+        </div>
+        
+    </div>
+<EditForm Model="createAttribute" OnValidSubmit="SubmitCreate">
+    <div class="modal fade  come-from-modal right" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel" style="float:left">Detail</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                
+            </div>
+            <div class="modal-body">
+                <DataAnnotationsValidator/>
+                <ValidationSummary/>
+                <div class="form-group">
+                    <lable>Attribute Master</lable>
+                    <InputText class="form-control" @bind-Value="createAttribute.AttributeMaster" ></InputText>
+                    <ValidationMessage For="()=>createAttribute.AttributeMaster"></ValidationMessage>
+                </div>
+                 <div class="form-group">
+                     <lable>Code</lable>
+                    <InputText class="form-control" @bind-Value="createAttribute.Code"></InputText>
+                    <ValidationMessage For="()=>createAttribute.Code"></ValidationMessage>
+                </div>
+                 <div class="form-group">
+                     <lable>Parent</lable>
+                    <InputText class="form-control" @bind-Value="createAttribute.Parent"></InputText>
+                    <ValidationMessage For="()=>createAttribute.Parent"></ValidationMessage>
+                </div>
+                 <div class="form-group">
+                     <lable>Description</lable>
+                    <InputText class="form-control" @bind-Value="createAttribute.Description"></InputText>
+                    <ValidationMessage For="()=>createAttribute.Description"></ValidationMessage>
+                </div>
+                 <div class="form-group">
+                     <lable>Short Name</lable>
+                    <InputText class="form-control" @bind-Value="createAttribute.ShortName"></InputText>
+                    <ValidationMessage For="()=>createAttribute.ShortName"></ValidationMessage>
+                </div>
+                 <div class="form-group">
+                     <lable>Effective Date</lable>
+                    <InputDate class="form-control" @bind-Value="createAttribute.EffectiveDate"></InputDate>
+                    <ValidationMessage For="()=>createAttribute.EffectiveDate"></ValidationMessage>
+                </div>
+                 <div class="form-group">
+                     <lable>Valid Until</lable>
+                    <InputDate class="form-control" @bind-Value="createAttribute.ValidUntil"></InputDate>
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+    <div class="row mt-2">
+        <table class="table">
+        <thead>
+            <tr>
+                @foreach(DataColumn col in dt.Columns)
+                {
+                        <th>@col.ColumnName</th>
+                    }
+                <th></th>
+                <th>Attribute Master</th>
+                <th>Attribute value Code</th>
+                <th>Description</th>
+                <th>Short Name</th>
+                <th>Parent</th>
+                <th>Effective Date</th>
+                <th>Valid Util</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(DataRow row in dt.Rows)
+                {
+                    <tr>
+                        @foreach(DataColumn col in dt.Columns)
+                        {
+                            <td>@row[col.ColumnName].ToString()</td>
+                        }
+                    
+                     </tr>   
+                    }
+        @foreach ( var i in attributes)
+        {
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>@i.AttributeMaster</td>
+                <td>@i.Code</td>
+                <td>@i.Description</td>
+                <td>@i.ShortName</td>
+                <td>@i.Parent</td>
+                <td>@i.EffectiveDate</td>
+                <td>@i.ValidUntil</td>
+                <td>
+                    <a data-toggle="modal" data-target="#myModal2">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                    </a>
+                    <a style="margin:0 8px" href="#">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                    <a href="#">
+                            <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </td>
+            </tr>
+
+        }
+        </tbody>
+    </table>
+    </div>
+    
+}
+
+@code {
+    DataTable dt = new DataTable();
+    async Task ImportExcelFile(InputFileChangeEventArgs e)
+    {
+        var fileStream= e.File.OpenReadStream();
+        var ms = new MemoryStream();
+        await fileStream.CopyToAsync(ms);
+        fileStream.Close();
+        ms.Position = 0;
+        ISheet sheet;
+        var xsswb = new XSSFWorkbook(ms);
+        sheet = xsswb.GetSheetAt(0);
+        IRow hr = sheet.GetRow(0);
+        var rl = new List<string>();
+        int cc = hr.LastCellNum;
+        for (var j = 0;j<cc;j++)
+        {
+            ICell cell = hr.GetCell(j);
+            dt.Columns.Add(cell.ToString());
+        }
+        for (var j = (sheet.FirstRowNum+1) ; j <= sheet.LastRowNum; j++)
+        {
+            var r = sheet.GetRow(j);
+            for( var i=r.FirstCellNum; i < cc; i++)
+            {
+                rl.Add(r.GetCell(i).ToString());
+
+            }
+            if(rl.Count > 0)
+            {
+                dt.Rows.Add(rl.ToArray());
+            }
+            rl.Clear();
+        }
+    }
+}

@@ -1,0 +1,36 @@
+﻿@page "/CustomerSetting"
+<h3>CustomerSetting</h3>
+
+@if(settings == null)
+{
+    <CustomerManagementBlazor.Components.Loading></CustomerManagementBlazor.Components.Loading>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Attribute Id</th>
+                <th>Attribute Name</th>
+                <th>Description</th>
+                <th>Is Customer Attribute</th>
+                <th>Is Distributor Attribute</th>
+                <th>Used</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach ( var i in settings)
+        {
+            <tr>
+                <td>@i.AttributeId</td>
+                <td>@i.AttributeName</td>
+                <td>@i.Description</td>
+                <td>@i.IsCustomerAttribute</td>
+                <td>@i.IsDistributorAttribute</td>
+                <td>@i.Used</td>
+            </tr>
+
+        }
+        </tbody>
+    </table>
+}
