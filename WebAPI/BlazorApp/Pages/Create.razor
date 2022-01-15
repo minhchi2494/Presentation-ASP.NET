@@ -1,0 +1,66 @@
+﻿@page "/create"
+@using BlazorApp.Models
+@using BlazorApp.Services
+@inject ICustomerService service;
+@inject NavigationManager NavigationManager;
+
+<EditForm Model="@customerCreate" OnValidSubmit="@SubmitCreate">
+    <DataAnnotationsValidator />
+    @*<ValidationSummary />*@
+  <div class="form-group">
+    <label for="AttributeMaster">Attribute Master</label>
+    <InputText class="form-control" @bind-Value="customerCreate.AttributeMaster"></InputText>
+    <ValidationMessage For="()=>customerCreate.AttributeMaster"></ValidationMessage>
+  </div>
+
+  <div class="form-group">
+    <label for="AttributeValuesCode">Attribute Values Code</label>
+    <InputText class="form-control" @bind-Value="customerCreate.AttributeValuesCode"></InputText>
+    <ValidationMessage For="()=>customerCreate.AttributeValuesCode"></ValidationMessage>
+  </div>
+
+  <div class="form-group">
+    <label for="Description">Description</label>
+    <InputText class="form-control" @bind-Value="customerCreate.Description"></InputText>
+    <ValidationMessage For="()=>customerCreate.Description"></ValidationMessage>
+  </div>
+
+  <div class="form-group">
+    <label for="ShortName">ShortName</label>
+    <InputText class="form-control" @bind-Value="customerCreate.ShortName"></InputText>
+    <ValidationMessage For="()=>customerCreate.ShortName"></ValidationMessage>
+  </div>
+
+  <div class="form-group">
+    <label for="Parent">Parent</label>
+    <InputText class="form-control" @bind-Value="customerCreate.Parent"></InputText>
+    <ValidationMessage For="()=>customerCreate.Parent"></ValidationMessage>
+  </div>
+
+  <div class="form-group">
+    <label for="EffectiveDate">EffectiveDate</label>
+    <InputDate class="form-control" @bind-Value="customerCreate.EffectiveDate"></InputDate>
+    <ValidationMessage For="()=>customerCreate.EffectiveDate"></ValidationMessage>
+  </div>
+
+  <div class="form-group">
+    <label for="ValidUntil">ValidUntil</label>
+    <InputDate TValue="DateTime?" class="form-control" @bind-Value="customerCreate.ValidUntil"></InputDate>
+    <ValidationMessage For="()=>customerCreate.ValidUntil"></ValidationMessage>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</EditForm>
+
+@code {
+    private CustomerAttributeModel customerCreate = new CustomerAttributeModel();
+
+    private async Task SubmitCreate(EditContext context)
+    {
+        var result = await service.Create(customerCreate);
+        if (result)
+        {
+            NavigationManager.NavigateTo("/customerAttribute");
+        }
+    }
+}

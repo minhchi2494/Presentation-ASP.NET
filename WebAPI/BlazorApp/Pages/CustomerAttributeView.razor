@@ -1,0 +1,85 @@
+﻿@page "/customerAttribute"
+@inject IConfiguration Configuration
+@using BlazorApp.Component;
+
+<h3>CustomerAttributeView</h3>
+
+@if(model == null)
+{
+    <h4>Loading</h4>
+}else
+{
+    <div class="row">
+        <EditForm Model="@CustomerSearch" OnSubmit=@SeachForm>
+            <div class="row">
+                <div class="col">
+                    <label>Attribute Master</label>
+                    <InputText class="form-control" @bind-Value="CustomerSearch.AttributeMaster"></InputText>
+                </div>
+
+                <div class="col pt-4">
+                    <button type="submit" class="btn btn-secondary">Search</button>
+                </div>
+
+                <div class="col pt-4">
+                    <a href="/create" class="btn btn-primary"><i class="fas fa-plus"></i> Create</a>
+                </div>
+            </div>
+
+        </EditForm>
+    </div>
+     
+    <div class="row mt-4">
+            <table class="table">
+            <thead>
+                <tr>
+                    <th>Attribute Master</th>
+                    <th>Attribute Values Code</th>
+                    <th>Description</th>
+                    <th>Short Name</th>
+                    <th>Parent</th>
+                    <th>Effective Date</th>
+                    <th>Valid Until</th>
+                    <th></th>
+                    <th>Action</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in model)
+                {
+                    <tr>
+                        <td>@item.AttributeMaster</td>
+                        <td>@item.AttributeValuesCode</td>
+                        <td>@item.Description</td>
+                        <td>@item.ShortName</td>
+                        <td>@item.Parent</td>
+                        <td>@item.EffectiveDate.ToString(Configuration["DateTimeFormat"])</td>
+                        <td>@item.ValidUntil</td>
+                        <td>
+                            <a href="/details/@item.Id" class="btn btn-success"><i class="far fa-eye"></i></a>
+                        </td>
+                        <td>
+                            <a href="/edit/@item.Id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" @onclick="() => OnDeleteTask(item.Id)"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                        @*<td>
+                            <span class="icon icon-edit" @onclick="() => Edit_ClickAsync(item.Id)">
+                                                text
+                                            </span>
+                        </td>*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <Confirmation ConfirmationMessage="Are you sure to delete?"
+                  ConfirmationTitle="Delete Task"
+                  @ref="DeleteConfirmation"
+                  ConfirmationChanged="OnConfirmDeleteTask">                 
+    </Confirmation>
+}
+
+

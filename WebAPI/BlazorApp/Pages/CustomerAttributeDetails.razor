@@ -1,0 +1,45 @@
+﻿@page "/details/{id:int}"
+@inject IConfiguration Configuration
+
+<h3>CustomerAttributeDetails</h3>
+
+<h1>Details Info</h1>
+
+
+<table class="table">
+    <tr>
+        <td>Attribute Master</td>
+        <td>@CustomerAttribute?.AttributeMaster</td>
+    </tr>
+
+    <tr>
+        <td>Attribute Value Code</td>
+        <td>@CustomerAttribute?.AttributeValuesCode</td>
+    </tr>
+
+    <tr>
+        <td>Description</td>
+        <td>@CustomerAttribute?.Description</td>
+    </tr>
+
+    <tr>
+        <td>Short Name</td>
+        <td>@CustomerAttribute?.ShortName</td>
+    </tr>
+
+    <tr>
+        <td>Parent</td>
+        <td>@CustomerAttribute?.Parent</td>
+    </tr>
+
+    <tr>
+        <td>EffectiveDate</td>
+        <td>@CustomerAttribute?.EffectiveDate.ToString(Configuration["DateTimeFormat"])</td>
+    </tr>
+
+    <tr>
+        <td>ValidUntil</td>
+        <td>@CustomerAttribute?.ValidUntil</td>
+    </tr>
+
+</table>

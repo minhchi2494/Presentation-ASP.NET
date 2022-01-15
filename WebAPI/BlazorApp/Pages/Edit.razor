@@ -1,0 +1,112 @@
+﻿@page "/edit/{id:int}"
+@using BlazorApp.Models
+@using BlazorApp.Services
+@inject ICustomerService service;
+@inject NavigationManager NavigationManager;
+
+<h3>Edit</h3>
+
+@if (customerCreate == null)
+{
+    <div>Loading</div>
+}
+else
+{
+    <form class="form-horizontal" action="/action_page.php">
+        <EditForm Model="@customerCreate" OnValidSubmit="@SubmitEdit">
+            <DataAnnotationsValidator />
+            @*<ValidationSummary />*@
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="Id">Id</label>
+                <input class="form-control" value="@customerCreate.Id" readonly />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="AttributeMaster">Attribute Master</label>
+                <div class="col-sm-10">
+                    <InputText class="form-control" @bind-Value="customerCreate.AttributeMaster"></InputText>
+                    <ValidationMessage For="()=>customerCreate.AttributeMaster"></ValidationMessage>
+                </div>
+                </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="AttributeValuesCode">Attribute Values Code</label>
+                <div class="col-sm-10">
+                    <InputText class="form-control" @bind-Value="customerCreate.AttributeValuesCode"></InputText>
+                    <ValidationMessage For="()=>customerCreate.AttributeValuesCode"></ValidationMessage>
+                </div>
+                </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="Description">Description</label>
+                <div class="col-sm-10">
+                    <InputText class="form-control" @bind-Value="customerCreate.Description"></InputText>
+                    <ValidationMessage For="()=>customerCreate.Description"></ValidationMessage>
+                </div>
+                </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="ShortName">ShortName</label>
+                <div class="col-sm-10">
+                    <InputText class="form-control" @bind-Value="customerCreate.ShortName"></InputText>
+                    <ValidationMessage For="()=>customerCreate.ShortName"></ValidationMessage>
+                </div>
+                </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="Parent">Parent</label>
+                <div class="col-sm-10">
+                    <InputText class="form-control" @bind-Value="customerCreate.Parent"></InputText>
+                    <ValidationMessage For="()=>customerCreate.Parent"></ValidationMessage>
+                </div>
+                </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="EffectiveDate">EffectiveDate</label>
+                <div class="col-sm-10">
+                    <InputDate class="form-control" @bind-Value="customerCreate.EffectiveDate"></InputDate>
+                    <ValidationMessage For="()=>customerCreate.EffectiveDate"></ValidationMessage>
+                </div>
+                </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="ValidUntil">ValidUntil</label>
+                <div class="col-sm-10">
+                    <InputDate TValue="DateTime?" class="form-control" @bind-Value="customerCreate.ValidUntil"></InputDate>
+                    <ValidationMessage For="()=>customerCreate.ValidUntil"></ValidationMessage>
+                </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+</EditForm>
+        </form>
+        }
+
+        @code {
+            [Parameter]
+            public int id { get; set; }
+
+    private CustomerAttributeModel customerCreate;
+
+        protected override async Task OnInitializedAsync()
+        {
+            var cust = await service.GetOne(id);
+            customerCreate = new CustomerAttributeModel();
+            customerCreate.Id = cust.Id;
+            customerCreate.AttributeMaster = cust.AttributeMaster;
+            customerCreate.AttributeValuesCode = cust.AttributeValuesCode;
+            customerCreate.Description = cust.Description;
+            customerCreate.ShortName = cust.ShortName;
+            customerCreate.Parent = cust.Parent;
+            customerCreate.EffectiveDate = cust.EffectiveDate;
+            customerCreate.ValidUntil = cust.ValidUntil;
+
+        }
+
+        private async Task SubmitEdit(EditContext context)
+        {
+            var result = await service.Edit(customerCreate);
+            if (result)
+            {
+                NavigationManager.NavigateTo("/customerAttribute");
+            }
+        }
+        }
