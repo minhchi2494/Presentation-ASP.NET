@@ -1,9 +1,9 @@
-﻿using DemoDotNetCore.Models;
+﻿using PracticeMVC.Models;
 using System.Collections.Generic;
 
-namespace DemoDotNetCore.Services.Attribute
+namespace PracticeMVC.Services
 {
-    public interface ICustomer_Attribute_Service
+    public interface ICustomer_Attribute
     {
         List<Customer_Attribute> findAll();
         Customer_Attribute findOne(string id);

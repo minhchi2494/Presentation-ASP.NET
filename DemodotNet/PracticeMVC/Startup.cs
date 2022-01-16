@@ -1,17 +1,17 @@
-using DemoDotNetCore.ConnectDB;
-using DemoDotNetCore.Services.Attribute;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PracticeMVC.ConnectDB;
+using PracticeMVC.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DemoDotNetCore
+namespace PracticeMVC
 {
     public class Startup
     {
@@ -25,12 +25,17 @@ namespace DemoDotNetCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
 
             String url = "server=HAN\\SQLEXPRESS;database=Digitech;uid=sa; pwd=123";
-            services.AddScoped<ICustomer_Attribute_Service, Customer_Attribute_Service>();
+            services.AddScoped<ICustomer_Setting, Customer_Setting_Service>();
+            services.AddScoped<ICustomer_Attribute, Customer_Attribute_Service>();
             services.AddDbContext<CustomerContext>(options => options.UseSqlServer(url));
-            
+            services.AddControllersWithViews();
+
+            //services.AddControllersWithViews();
+            //services.AddDbContext<CustomerContext>(options =>
+            //    options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
+            //);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +59,7 @@ namespace DemoDotNetCore
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=CustomerAttribute}/{action=Index}/{id?}");
+                    pattern: "{controller=CustomerSetting}/{action=Index}/{id?}");
             });
         }
     }

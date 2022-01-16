@@ -1,0 +1,176 @@
+﻿@model IEnumerable<DemoDotNetCore.Models.Customer_Attribute>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#btnupload').on('click', function () {
+            var fileExtension = ['xls', 'xlsx'];
+            var filename = $('#fileupload').val();
+            if (filename.length == 0) {
+                alert("Please select a file.");
+                return false;
+            }
+            else {
+                var extension = filename.replace(/^.*\./, '');
+                if ($.inArray(extension, fileExtension) == -1) {
+                    alert("Please select only excel files.");
+                    return false;
+                }
+            }
+            var fdata = new FormData();
+            var fileUpload = $("#fileupload").get(0);
+            var files = fileUpload.files;
+            fdata.append(files[0].name, files[0]);
+            $.ajax({
+                type: "POST",
+                url: "/CustomerAttribute/Import",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN",
+                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+                data: fdata,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response.length == 0)
+                        alert('Some error occured while uploading');
+                    else {
+                        $('#divPrint').html(response);
+                    }
+                },
+                error: function (e) {
+                    $('#divPrint').html(e.responseText);
+                }
+            });
+        })
+        $('#btnExport').on('click', function () {
+            var fileExtension = ['xls', 'xlsx'];
+            var filename = $('#fileupload').val();
+            if (filename.length == 0) {
+                alert("Please select a file then Import");
+                return false;
+            }
+        });
+    });
+   
+</script>
+
+<div class="listSetting">
+    <h1 class="titleSetting"><i class=" iconsetting fas fa-cog"></i>Customer Setting</h1>
+    <div class="itemlistsettings">
+        <div class="itemlistsetting">
+            <p>
+                <button id="save"><i class="far fa-plus"></i><a asp-action="create" asp-controller="CustomerAttribute">Add</a></button>
+            </p>
+
+            <form asp-controller="Home" asp-action="Export">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <input type="file" id="fileupload" name="files" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <input type="button" name="Upload" value="Upload" id="btnupload" class="btn btn-primary" />
+                <a href="@Url.Action("Download", "Home")">Download</a>
+            </div>
+            <div class="col-md-5">
+                <input type="submit" name="Export" value="Create and Export" id="btnExport"
+                       class="btn btn-primary" asp-action="Export" />
+            </div>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+        <div class="row">
+            <div id="divPrint"></div>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Attribute_Master)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Attribute_Value_Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Short_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Parent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Effective_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valid_Until)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Attribute_Master)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Attribute_Value_Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Short_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Effective_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valid_Until)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Attribute_Id" class="btn btn-primary"><i class="far fa-eye"></i></a>|
+                <a asp-action="Details" asp-route-id="@item.Attribute_Id" class="btn btn-danger"><i class="far fa-pen"></i></a>|
+               @*<i class="fas fa-pen">@Html.ActionLink("Detail", "Details", new {  id=item.Attribute_Id })</i> |*@
+               <a asp-action="Delete" asp-route-id="@item.Attribute_Id" class="btn btn-primary"><i class="far fa-trash-alt"></i></a>
+               @*<i class="far fa-trash-alt">@Html.ActionLink("Delete", "Delete", new {  id=item.Attribute_Id }, 
+                                                     new{onclick="return confirm('Are you sure?')"})</i> *@
+            </td>
+        </tr>
+}
+    </tbody>`   
+</table>
+
+        </div>
+    </div>
+</div>
+    
+<div class="row">
+    @*<div class=col-md-4>
+        @using(Html.BeginForm("Create", "CustomerAttribute", FormMethod.Post))
+        {
+            <div>
+                @Html.LabelFor(model=>model.Attribute_Master)
+            </div>
+        }
+    </div>*@
+</div>

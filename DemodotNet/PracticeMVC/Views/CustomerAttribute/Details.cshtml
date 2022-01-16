@@ -1,0 +1,97 @@
+﻿@model PracticeMVC.Models.Customer_Attribute
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    th.style {
+        color: #0000CD;
+        width: 150px;
+        color: #191970;
+    }
+    th.style2 {
+        color: #0000CD;
+    }
+    .table {
+        margin-left: auto;
+        margin-right: auto;
+        width: 500px;
+        border-radius: 15%;
+        -moz-border-radius: 15%;
+        -webkit-border-radius: 15%;
+    }
+    h2 {
+        text-align: center;
+        color: #191970;
+    }
+    h3 {
+        text-align: center;
+        color: #0000CD;
+    }
+
+    th img {
+        border-radius: 15%;
+        -moz-border-radius: 15%;
+        -webkit-border-radius: 15%;
+        width: 100px;
+        display: block; 
+        margin-left: auto; 
+        margin-right: auto;
+    }
+</style>
+
+<div class="listSetting">
+    <h1 class="titleSetting"><i class=" iconsetting fas fa-cog"></i>Customer Setting</h1>
+    <div class="itemlistsettings">
+        <div class="itemlistsetting">
+            <div class="row">
+                <div class="listAttribute">
+                     <div style="margin-left: 10px; margin-right: 10px">
+        <div class="container-fluit">
+            <table class="table table-bordered">
+                <tr>
+                    <th class="style">@Html.DisplayNameFor(model => model.Attribute_Master)</th>
+                    <th class="style2">@Html.DisplayFor(model => model.Attribute_Master)</th>
+                </tr>
+                <tr>
+                    <th class="style">@Html.DisplayNameFor(model => model.Attribute_Value_Code)</th>
+                    <th class="style2">@Html.DisplayFor(model => model.Attribute_Value_Code)</th>
+                </tr>
+                <tr>
+                    <th class="style">@Html.DisplayNameFor(model => model.Description)</th>
+                    <th class="style2">@Html.DisplayFor(model => model.Description)</th>
+                </tr>
+                <tr>
+                    <th class="style">@Html.DisplayNameFor(model => model.Short_Name)</th>
+                    <th class="style2">@Html.DisplayFor(model => model.Short_Name)</th>
+                </tr>
+                <tr>
+                    <th class="style">@Html.DisplayNameFor(model => model.Parent)</th>
+                    <th class="style2">@Html.DisplayFor(model => model.Parent)</th>
+                </tr>
+                <tr>
+                    <th class="style">@Html.DisplayNameFor(model => model.Effective_Date)</th>
+                    <th class="style2">@Html.DisplayFor(model => model.Effective_Date)</th>
+                </tr>
+                <tr>
+                    <th class="style">@Html.DisplayNameFor(model => model.Valid_Until)</th>
+                    <th class="style2">@Html.DisplayFor(model => model.Valid_Until)</th>
+                </tr>
+                <tr>
+                     <a asp-action="Edit" asp-route-id="@Model.Attribute_Id">Edit</a> |
+                     <a asp-action="Index">Back to List</a>
+                </tr>
+            </table>
+            
+                                        </div>
+                                  </div>
+                            </div>
+                        <div>
+                            
+                        </div>
+                  </div>
+            </div>
+      </div>
+</div> 
+

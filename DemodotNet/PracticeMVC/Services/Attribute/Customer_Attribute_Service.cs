@@ -1,13 +1,11 @@
-﻿using DemoDotNetCore.ConnectDB;
-using DemoDotNetCore.Services;
-using DemoDotNetCore.Models;
+﻿using PracticeMVC.ConnectDB;
+using PracticeMVC.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-
-namespace DemoDotNetCore.Services.Attribute
+namespace PracticeMVC.Services
 {
-    public class Customer_Attribute_Service : ICustomer_Attribute_Service
+    public class Customer_Attribute_Service : ICustomer_Attribute
     {
         private CustomerContext context;
 

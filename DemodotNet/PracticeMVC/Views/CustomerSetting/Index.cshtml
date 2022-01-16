@@ -1,0 +1,67 @@
+﻿@model IEnumerable<PracticeMVC.Models.Customer_Setting>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
+</head>
+
+<div class="listSetting">
+    <h1 class="titleSetting"><i class=" iconsetting fas fa-cog"></i>Customer Setting</h1>
+    <div class="itemlistsettings">
+        <div class="itemlistsetting">
+            <p>
+                <button id="save" asp-action="Create"><i class="far fa-save"></i>Save</button>
+            </p>
+            <table class="table" border="1">
+                <thead class="table-thead">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Attribute_Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Is_Distributor_Attribute)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Is_Customer_Attribute)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Used)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="table-tbody">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Attribute_Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Is_Distributor_Attribute)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Is_Customer_Attribute)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Used)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
